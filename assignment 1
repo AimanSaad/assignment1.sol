@@ -1,28 +1,46 @@
 
 pragma solidity ^ 0.8.0;
+
+// contract definition
 contract enrollment {
-    address payable private owner = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+
+// state variables
+    address payable private add = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+    
+//function definition
     function setAddress(address payable add) public {
     owner = add;
     }
-
-    modifier onlyBy() {
+// modifier declaration
+   modifier onlyBy() {
         if (msg.sender == owner) {
             _;
         }
     } 
-    struct student {
+
+// struct definition
+    struct Student {
         string name;
         uint enrollno;
         address ethAdd;
         bool hasBSdegree;
-        enum gender;
-        enum studyMode;
-    }
-    function checkBalance() public view returns (uint) {
+        bool isFeePaid;
+    } 
+    
+    //enum declaration
+        enum gender {female,male}
+        enum studyMode {onsite,online}
+        
+        event newEnrollment(name, enrollno, ethAdd);
+    
+    //function definition
+    function checkBalance() onlyBy() public view returns (uint) {
         return address(this).balance;
     }
+    
+    //function definition
     function recievePayment() public payable {
+        myBalance += msg.value;
         
     }
     mapping (int => string) records ;
@@ -31,3 +49,6 @@ contract enrollment {
     }
         
     }
+    
+    
+}
