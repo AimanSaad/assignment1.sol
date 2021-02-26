@@ -1,0 +1,33 @@
+
+pragma solidity ^ 0.8.0;
+contract enrollment {
+    address payable private owner = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+    function setAddress(address payable add) public {
+    owner = add;
+    }
+
+    modifier onlyBy() {
+        if (msg.sender == owner) {
+            _;
+        }
+    } 
+    struct student {
+        string name;
+        uint enrollno;
+        address ethAdd;
+        bool hasBSdegree;
+        enum gender;
+        enum studyMode;
+    }
+    function checkBalance() public view returns (uint) {
+        return address(this).balance;
+    }
+    function recievePayment() public payable {
+        
+    }
+    mapping (int => string) records ;
+    function retrieveRecord() public returns (string memory){
+        record[];
+    }
+        
+    }
