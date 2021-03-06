@@ -45,9 +45,11 @@ contract enrollment {
      records [a] = b;
      return b;
     }
+         function checkfee(uint fee) public payable {
+        if (msg.value < 2 ether)
+        revert ("not enough amount to enroll");
         
-    
-    
+    }
     
 
 
